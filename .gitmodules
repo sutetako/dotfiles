@@ -7,3 +7,9 @@
 [submodule ".vim/pack/utils/start/vim-gitgutter"]
 	path = .vim/pack/utils/start/vim-gitgutter
 	url = https://github.com/airblade/vim-gitgutter
+[submodule ".vim/pack/browse/start/nerdtree-git-plugin"]
+	path = .vim/pack/browse/start/nerdtree-git-plugin
+	url = https://github.com/Xuyuanp/nerdtree-git-plugin.git
+[submodule ".vim/pack/browse/start/vim-nerdtree-tabs"]
+	path = .vim/pack/browse/start/vim-nerdtree-tabs
+	url = https://github.com/jistr/vim-nerdtree-tabs.git
