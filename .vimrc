@@ -47,6 +47,8 @@ set noerrorbells
 set modifiable
 set write
 
+set directory=~/.vim/tmp
+
 
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 
