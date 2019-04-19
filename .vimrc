@@ -5,7 +5,8 @@ set nocompatible
 set number
 set fenc=utf-8
 set laststatus=2
-set cmdheight=2
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ \[ENC=%{&fileencoding}]%P
+
 set showmatch
 set ruler
 set list
@@ -49,10 +50,13 @@ set write
 
 set directory=~/.vim/tmp
 
+"mappings
 
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 
-let g:netrw_liststyle=3
+"plugin settings
+
+let g:gitgutter_highlight_lines = 1
 
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif

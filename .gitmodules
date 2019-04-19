@@ -1,6 +1,9 @@
 [submodule ".vim/pack/browse/start/nerdtree"]
 	path = .vim/pack/browse/start/nerdtree
 	url = https://github.com/scrooloose/nerdtree.git
-[submodule ".vim/pack/tools/start/vim-fugitive"]
-	path = .vim/pack/tools/start/vim-fugitive
+[submodule ".vim/pack/utils/start/vim-fugitive"]
+	path = .vim/pack/utils/start/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
+[submodule ".vim/pack/utils/start/vim-gitgutter"]
+	path = .vim/pack/utils/start/vim-gitgutter
+	url = https://github.com/airblade/vim-gitgutter
