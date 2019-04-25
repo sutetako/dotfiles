@@ -50,16 +50,26 @@ set write
 
 set directory=~/.vim/tmp
 
-"mappings
+" mappings
 
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 
-"plugin settings
+" plugin settings
 
+" gitgutter
 let g:gitgutter_highlight_lines = 1
 set updatetime=250
 
+" NERDTree
 let NERDTreeShowHidden = 1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | let g:nerdtree_tabs_open_on_console_startup = 1 | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
+" vim-clang
+let g:clang_auto = 0
+let g:clang_c_options = '-std=c11'
+let g:clang_cpp_options = '-std=c++11'
+let g:clang_load_if_clang_dotfile = 1
+let g:clang_check_syntax_auto = 1
+let g:clang_include_sysheaders_from_gcc = 1
+let g:clang_sh_exec = 'bash'

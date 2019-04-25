@@ -13,3 +13,6 @@
 [submodule ".vim/pack/browse/start/vim-nerdtree-tabs"]
 	path = .vim/pack/browse/start/vim-nerdtree-tabs
 	url = https://github.com/jistr/vim-nerdtree-tabs.git
+[submodule ".vim/pack/completion/opt/vim-clang"]
+	path = .vim/pack/completion/opt/vim-clang
+	url = https://github.com/justmao945/vim-clang.git
