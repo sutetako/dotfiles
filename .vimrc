@@ -3,10 +3,13 @@ syntax on
 
 set nocompatible
 set number
-set fenc=utf-8
+set encoding=utf-8
+set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
+set fileformats=unix,dos,mac
 set laststatus=2
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ \[ENC=%{&fileencoding}]%P
 
+set showcmd
 set showmatch
 set ruler
 set list
@@ -26,6 +29,7 @@ set hlsearch
 set incsearch
 set ignorecase
 set smartcase
+set nowrapscan
 
 set expandtab
 set tabstop=2
@@ -37,7 +41,6 @@ set smartindent
 set clipboard=unnamed,unnamedplus
 set mouse=a
 set shellslash
-" set iminsert=2
 
 set wildmenu wildmode=list:longest,full
 set history=10000
@@ -49,6 +52,20 @@ set modifiable
 set write
 
 set directory=~/.vim/tmp
+
+set completeopt=menu,noselect,longest
+
+" filetype
+"
+filetype plugin indent on
+
+autocmd FileType c           setlocal sw=2 sts=2 ts=2 et
+autocmd FileType cpp         setlocal sw=2 sts=2 ts=2 et
+
+au FileType rust nmap gd <Plug>(rust-def)
+au FileType rust nmap gs <Plug>(rust-def-split)
+au FileType rust nmap gx <Plug>(rust-def-vertical)
+au FileType rust nmap <leader>gd <Plug>(rust-doc)
 
 " mappings
 
@@ -73,3 +90,8 @@ let g:clang_load_if_clang_dotfile = 1
 let g:clang_check_syntax_auto = 1
 let g:clang_include_sysheaders_from_gcc = 1
 let g:clang_sh_exec = 'bash'
+
+" vim-racer
+let g:racer_cmd = '/home/sutetako/.cargo/bin/racer'
+let g:racer_experimental_completer = 1
+let g:rustfmt_autosave = 1

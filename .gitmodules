@@ -16,3 +16,9 @@
 [submodule ".vim/pack/completion/opt/vim-clang"]
 	path = .vim/pack/completion/opt/vim-clang
 	url = https://github.com/justmao945/vim-clang.git
+[submodule ".vim/pack/utils/start/rust.vim"]
+	path = .vim/pack/utils/start/rust.vim
+	url = https://github.com/rust-lang/rust.vim.git
+[submodule ".vim/pack/completion/opt/vim-racer"]
+	path = .vim/pack/completion/opt/vim-racer
+	url = https://github.com/racer-rust/vim-racer.git
