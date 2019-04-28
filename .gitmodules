@@ -22,3 +22,6 @@
 [submodule ".vim/pack/completion/opt/vim-racer"]
 	path = .vim/pack/completion/opt/vim-racer
 	url = https://github.com/racer-rust/vim-racer.git
+[submodule ".vim/pack/browse/start/winresizer"]
+	path = .vim/pack/browse/start/winresizer
+	url = https://github.com/simeji/winresizer.git

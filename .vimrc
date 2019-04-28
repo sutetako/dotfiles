@@ -63,11 +63,10 @@ filetype plugin indent on
 autocmd FileType c           setlocal sw=2 sts=2 ts=2 et
 autocmd FileType cpp         setlocal sw=2 sts=2 ts=2 et
 
-
-
 " mappings
 
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
+
 
 " *** plugin settings ***
 
@@ -108,3 +107,8 @@ autocmd FileType rust nmap gd <Plug>(rust-def)
 autocmd FileType rust nmap gs <Plug>(rust-def-split)
 autocmd FileType rust nmap gx <Plug>(rust-def-vertical)
 autocmd FileType rust nmap <leader>gd <Plug>(rust-doc)
+
+" winresizer
+
+let g:winresizer_vert_resize=2
+let g:winresizer_horiz_resize=2
