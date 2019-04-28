@@ -3,8 +3,9 @@ syntax on
 
 set nocompatible
 set number
+set fenc=utf-8
 set encoding=utf-8
-set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
+set fileencodings=utf-8,sjis,euc-jp,iso-2022-jp
 set fileformats=unix,dos,mac
 set laststatus=2
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ \[ENC=%{&fileencoding}]%P
@@ -13,7 +14,7 @@ set showcmd
 set showmatch
 set ruler
 set list
-set listchars=tab:\ >,trail:-,nbsp:%,eol:↲,extends:>,precedes:<
+set listchars=tab:\ >,trail:-,nbsp:%,extends:>,precedes:<
 
 set backspace=indent,eol,start
 set whichwrap=b,s,h,l,<,>,[,]
@@ -29,7 +30,6 @@ set hlsearch
 set incsearch
 set ignorecase
 set smartcase
-set nowrapscan
 
 set expandtab
 set tabstop=2
@@ -78,7 +78,11 @@ let g:gitgutter_highlight_lines = 1
 set updatetime=250
 
 " NERDTree
-let NERDTreeShowHidden = 1
+let g:NERDTreeWinSize = 20
+let g:NERDTreeShowHidden = 1
+let g:NERDTreeChDirMode = 2
+
+nnoremap <silent><C-e> :NERDTreeToggle<CR>
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | let g:nerdtree_tabs_open_on_console_startup = 1 | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
