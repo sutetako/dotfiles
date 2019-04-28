@@ -1,4 +1,4 @@
-
+" *** general settings ***
 syntax on
 
 set nocompatible
@@ -57,22 +57,19 @@ set directory=~/.vim/tmp
 set completeopt=menu,noselect,longest
 
 " filetype
-"
+
 filetype plugin indent on
 
 autocmd FileType c           setlocal sw=2 sts=2 ts=2 et
 autocmd FileType cpp         setlocal sw=2 sts=2 ts=2 et
 
-au FileType rust nmap gd <Plug>(rust-def)
-au FileType rust nmap gs <Plug>(rust-def-split)
-au FileType rust nmap gx <Plug>(rust-def-vertical)
-au FileType rust nmap <leader>gd <Plug>(rust-doc)
+
 
 " mappings
 
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 
-" plugin settings
+" *** plugin settings ***
 
 " gitgutter
 let g:gitgutter_highlight_lines = 1
@@ -84,8 +81,14 @@ let g:NERDTreeShowHidden = 1
 let g:NERDTreeChDirMode = 2
 
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | let g:nerdtree_tabs_open_on_console_startup = 1 | endif
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd VimEnter *
+\  if argc() == 0 && !exists("s:std_in") |
+\    let g:nerdtree_tabs_open_on_console_startup = 1 |
+\  endif
+autocmd bufenter *
+\  if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) |
+\    q |
+\  endif
 
 " vim-clang
 let g:clang_auto = 0
@@ -97,6 +100,11 @@ let g:clang_include_sysheaders_from_gcc = 1
 let g:clang_sh_exec = 'bash'
 
 " vim-racer
-let g:racer_cmd = '/home/sutetako/.cargo/bin/racer'
+let g:racer_cmd = '$HOME/.cargo/bin/racer'
 let g:racer_experimental_completer = 1
 let g:rustfmt_autosave = 1
+
+autocmd FileType rust nmap gd <Plug>(rust-def)
+autocmd FileType rust nmap gs <Plug>(rust-def-split)
+autocmd FileType rust nmap gx <Plug>(rust-def-vertical)
+autocmd FileType rust nmap <leader>gd <Plug>(rust-doc)
