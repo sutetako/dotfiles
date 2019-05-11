@@ -73,6 +73,7 @@ nmap <Esc><Esc> :nohlsearch<CR><Esc>
 " gitgutter
 let g:gitgutter_highlight_lines = 1
 set updatetime=250
+nmap ghu <Plug>GitGutterUndoHunk
 
 " NERDTree
 let g:NERDTreeWinSize = 20
