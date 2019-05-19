@@ -25,3 +25,6 @@
 [submodule ".vim/pack/completion/start/vim-clang"]
 	path = .vim/pack/completion/start/vim-clang
 	url = https://github.com/justmao945/vim-clang.git
+[submodule ".vim/pack/utils/start/vim-airline"]
+	path = .vim/pack/utils/start/vim-airline
+	url = https://github.com/vim-airline/vim-airline.git
