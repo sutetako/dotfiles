@@ -28,3 +28,9 @@
 [submodule ".vim/pack/utils/start/vim-airline"]
 	path = .vim/pack/utils/start/vim-airline
 	url = https://github.com/vim-airline/vim-airline.git
+[submodule ".vim/pack/utils/start/vim-gutentags"]
+	path = .vim/pack/utils/start/vim-gutentags
+	url = https://github.com/ludovicchabant/vim-gutentags.git
+[submodule ".vim/pack/browse/start/tagbar"]
+	path = .vim/pack/browse/start/tagbar
+	url = https://github.com/majutsushi/tagbar.git
