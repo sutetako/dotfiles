@@ -34,9 +34,6 @@
 [submodule ".vim/pack/browse/start/tagbar"]
 	path = .vim/pack/browse/start/tagbar
 	url = https://github.com/majutsushi/tagbar.git
-[submodule ".vim/pack/utils/start/vim-bufferline"]
-	path = .vim/pack/utils/start/vim-bufferline
-	url = https://github.com/bling/vim-bufferline.git
 [submodule ".vim/pack/utils/start/vim-airline-themes"]
 	path = .vim/pack/utils/start/vim-airline-themes
 	url = https://github.com/vim-airline/vim-airline-themes.git

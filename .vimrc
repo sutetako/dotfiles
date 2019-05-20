@@ -122,6 +122,3 @@ let g:airline#extensions#tabline#enabled=1
 let g:airline_powerline_fonts=1
 let g:airline_theme='onedark'
 
-" vim-bufferline
-let g:bufferline_echo = 0
-let g:bufferline_fname_mod = ':p:~:.'
