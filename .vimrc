@@ -11,7 +11,6 @@ set laststatus=2
 set showtabline=2
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ \[ENC=%{&fileencoding}]\ \[%{&fileformat}]\ %y\ %P
 
-
 set showcmd
 set showmatch
 set ruler
@@ -66,29 +65,31 @@ autocmd FileType cpp         setlocal sw=2 sts=2 ts=2 et
 
 " mappings
 
-nmap <Esc><Esc> :nohlsearch<CR><Esc>
+nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
+nnoremap <silent><space> :tabnew<CR>:term ++curwin<CR>
+nnoremap x "_x
+nnoremap s "_s
 
+" auto commands
+autocmd BufEnter * if bufname('%') == '' && &buftype == '' | let w:bufno = bufnr('%') | bf | execute 'bd' w:bufno | endif
 
 " *** plugin settings ***
 
 " gitgutter
 let g:gitgutter_highlight_lines = 1
-set updatetime=250
+set updatetime=200
 nmap ghu <Plug>GitGutterUndoHunk
 
 " NERDTree
-let g:NERDTreeWinSize = 20
+let g:NERDTreeWinSize = 30
 let g:NERDTreeShowHidden = 1
 let g:NERDTreeChDirMode = 2
 
-nnoremap <silent><C-e> :NERDTreeToggle<CR>
+" nerdtree-tabs
+nmap <silent><C-n>  <plug>NERDTreeTabsToggle<CR>
 autocmd VimEnter *
 \  if argc() == 0 && !exists("s:std_in") |
 \    let g:nerdtree_tabs_open_on_console_startup = 1 |
-\  endif
-autocmd bufenter *
-\  if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) |
-\    q |
 \  endif
 
 " vim-clang
