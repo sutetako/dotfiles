@@ -55,6 +55,7 @@ set write
 set directory=~/.vim/tmp
 
 set completeopt=menu,noselect,longest
+set diffopt=internal,filler,algorithm:histogram,indent-heuristic
 
 " filetype
 
