@@ -1,2 +1,4 @@
 .vim/tmp/*
+.vim/view/*
 !.gitkeep
+tags
