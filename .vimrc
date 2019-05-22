@@ -66,12 +66,19 @@ autocmd FileType cpp         setlocal sw=2 sts=2 ts=2 et
 " mappings
 
 nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
-nnoremap <silent><space> :tabnew<CR>:term ++curwin<CR>
+
+nnoremap <silent> <Enter> :tabnew<CR>:term ++curwin<CR>
+tnoremap <silent> <C-w><Enter> <C-w>:tabnew<CR>:term ++curwin<CR>
+nnoremap <silent> <C-Right> :tabn<CR>
+nnoremap <silent> <C-Left> :tabN<CR>
+tnoremap <silent> <C-Right> <C-w>:tabn<CR>
+tnoremap <silent> <C-Left> <C-w>:tabN<CR>
+tnoremap <silent> <C-w>p <C-w>""
 nnoremap x "_x
 nnoremap s "_s
 
 " auto commands
-autocmd BufEnter * if bufname('%') == '' && &buftype == '' | let w:bufno = bufnr('%') | bf | execute 'bd' w:bufno | endif
+" autocmd BufEnter * if bufname('%') == '' && &buftype == '' | let w:bufno = bufnr('%') | bf | execute 'bd' w:bufno | endif
 
 " *** plugin settings ***
 
@@ -87,6 +94,7 @@ let g:NERDTreeChDirMode = 2
 
 " nerdtree-tabs
 nmap <silent><C-n>  <plug>NERDTreeTabsToggle<CR>
+tmap <silent><C-n>  <C-w>:NERDTreeTabsToggle<CR>
 autocmd VimEnter *
 \  if argc() == 0 && !exists("s:std_in") |
 \    let g:nerdtree_tabs_open_on_console_startup = 1 |
