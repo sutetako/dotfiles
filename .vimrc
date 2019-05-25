@@ -66,10 +66,12 @@ autocmd FileType cpp         setlocal sw=2 sts=2 ts=2 et
 
 " mappings
 
+let mapleader = "\<Space>"
 nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
 
 nnoremap <silent> <Enter> :tabnew<CR>:term ++curwin<CR>
 tnoremap <silent> <C-w><Enter> <C-w>:tabnew<CR>:term ++curwin<CR>
+nnoremap <silent> <Leader>k :bd<CR>
 nnoremap <silent> <C-Right> :tabn<CR>
 nnoremap <silent> <C-Left> :tabN<CR>
 tnoremap <silent> <C-Right> <C-w>:tabn<CR>
@@ -77,6 +79,7 @@ tnoremap <silent> <C-Left> <C-w>:tabN<CR>
 tnoremap <silent> <C-w>p <C-w>""
 nnoremap x "_x
 nnoremap s "_s
+
 
 " auto commands
 " autocmd BufEnter * if bufname('%') == '' && &buftype == '' | let w:bufno = bufnr('%') | bf | execute 'bd' w:bufno | endif
@@ -128,7 +131,17 @@ let g:winresizer_horiz_resize=2
 
 " vim-airline
 let g:airline#extensions#tabline#enabled=1
-" let g:airline_statusline_ontop=1
-let g:airline_powerline_fonts=1
+" let g:airline_statusline_ontop=1 let g:airline_powerline_fonts=1
 let g:airline_theme='onedark'
 
+" fzf.vim
+nnoremap fb :Buffers<CR>
+nnoremap ff :Files<CR>
+nnoremap ft :Tags<CR>
+nnoremap fg :Rg<CR>
+command! FZFMru call fzf#run({
+\  'source':  v:oldfiles,
+\  'sink':    'e',
+\  'options': '-m -x +s',
+\  'down':    '40%'})
+nnoremap fr :FZFMru<CR>
