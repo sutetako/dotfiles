@@ -95,6 +95,7 @@ nmap ghu <Plug>GitGutterUndoHunk
 let g:NERDTreeWinSize = 30
 let g:NERDTreeShowHidden = 1
 let g:NERDTreeChDirMode = 2
+let g:NERDTreeQuitOnOpen = 3
 
 " nerdtree-tabs
 nmap <silent><C-n>  <plug>NERDTreeTabsToggle<CR>
