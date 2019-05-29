@@ -2,3 +2,4 @@
 .vim/view/*
 !.gitkeep
 tags
+.netrwhist
