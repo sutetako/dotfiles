@@ -69,8 +69,8 @@ autocmd FileType cpp         setlocal sw=2 sts=2 ts=2 et
 let mapleader = "\<Space>"
 nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
 
-nnoremap <silent> <Enter> :tabnew<CR>:term ++curwin<CR>
-tnoremap <silent> <C-w><Enter> <C-w>:tabnew<CR>:term ++curwin<CR>
+nnoremap <silent> <Leader><Enter> :tabnew<CR>:term ++curwin<CR>
+tnoremap <silent> <C-w><Leader><Enter> <C-w>:tabnew<CR>:term ++curwin<CR>
 nnoremap <silent> <Leader>k :bd<CR>
 nnoremap <silent> <C-Right> :tabn<CR>
 nnoremap <silent> <C-Left> :tabN<CR>
@@ -80,9 +80,20 @@ tnoremap <silent> <C-w>p <C-w>""
 nnoremap x "_x
 nnoremap s "_s
 
+" functions
+function! CreateCompileCommands()
+  if filereadable("CMakeLists.txt") && isdirectory("./build")
+    execute "lcd" . "./build"
+    call system('cmake .. -DCMAKE_EXPORT_COMPILE_COMMANDS=ON')
+    call system('compdb list > ../compile_commands.json')
+    execute "lcd" . "../"
+  endif
+endfunction
 
 " auto commands
 " autocmd BufEnter * if bufname('%') == '' && &buftype == '' | let w:bufno = bufnr('%') | bf | execute 'bd' w:bufno | endif
+command! CCC call CreateCompileCommands()
+autocmd VimEnter * CCC
 
 " *** plugin settings ***
 
@@ -95,7 +106,7 @@ nmap ghu <Plug>GitGutterUndoHunk
 let g:NERDTreeWinSize = 30
 let g:NERDTreeShowHidden = 1
 let g:NERDTreeChDirMode = 2
-let g:NERDTreeQuitOnOpen = 3
+" let g:NERDTreeQuitOnOpen = 3
 
 " nerdtree-tabs
 nmap <silent><C-n>  <plug>NERDTreeTabsToggle<CR>
@@ -108,12 +119,13 @@ autocmd VimEnter *
 " vim-clang
 let g:clang_c_options = '-std=c11 -stdlib=libgcc'
 let g:clang_cpp_options = '-std=c++14 -stdlib=libstdc++'
-let g:clang_load_if_clang_dotfile = 1
+" let g:clang_load_if_clang_dotfile = 1
 let g:clang_check_syntax_auto = 1
 " let g:clang_format_auto = 1
 let g:clang_use_library = 1
 let g:clang_include_sysheaders_from_gcc = 1
 let g:clang_sh_exec = 'bash'
+let g:clang_compilation_database = './'
 
 " vim-racer
 let g:racer_cmd = '$HOME/.cargo/bin/racer'
@@ -133,7 +145,8 @@ let g:winresizer_horiz_resize=2
 " vim-airline
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#ale#enabled=1
-" let g:airline_statusline_ontop=1 let g:airline_powerline_fonts=1
+" let g:airline_statusline_ontop=1
+let g:airline_powerline_fonts=1
 let g:airline_theme='onedark'
 
 " fzf.vim
@@ -147,3 +160,9 @@ command! FZFMru call fzf#run({
 \  'options': '-m -x +s',
 \  'down':    '40%'})
 nnoremap fr :FZFMru<CR>
+
+" ale
+let g:ale_linters = {
+\   'c'  : ['cppcheck', 'clangtidy', 'clangcheck'],
+\   'cpp': ['cppcheck', 'clangtidy', 'clangcheck'],
+\}
