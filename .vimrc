@@ -94,6 +94,7 @@ endfunction
 " autocmd BufEnter * if bufname('%') == '' && &buftype == '' | let w:bufno = bufnr('%') | bf | execute 'bd' w:bufno | endif
 command! CCC call CreateCompileCommands()
 autocmd VimEnter * CCC
+autocmd BufWritePost CMakeLists.txt CCC
 
 " *** plugin settings ***
 
