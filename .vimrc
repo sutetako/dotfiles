@@ -117,20 +117,7 @@ autocmd VimEnter *
 \    let g:nerdtree_tabs_open_on_console_startup = 1 |
 \  endif
 
-" vim-clang
-let g:clang_c_options = '-std=c11 -stdlib=libgcc'
-let g:clang_cpp_options = '-std=c++14 -stdlib=libstdc++'
-" let g:clang_load_if_clang_dotfile = 1
-let g:clang_check_syntax_auto = 1
-" let g:clang_format_auto = 1
-let g:clang_use_library = 1
-let g:clang_include_sysheaders_from_gcc = 1
-let g:clang_sh_exec = 'bash'
-let g:clang_compilation_database = './'
-
-" vim-racer
-let g:racer_cmd = '$HOME/.cargo/bin/racer'
-let g:racer_experimental_completer = 1
+" rust.vim
 let g:rustfmt_autosave = 1
 
 autocmd FileType rust nmap gd <Plug>(rust-def)
@@ -139,7 +126,6 @@ autocmd FileType rust nmap gx <Plug>(rust-def-vertical)
 autocmd FileType rust nmap <leader>gd <Plug>(rust-doc)
 
 " winresizer
-
 let g:winresizer_vert_resize=2
 let g:winresizer_horiz_resize=2
 
