@@ -3,7 +3,6 @@ syntax on
 
 set nocompatible
 set number
-set fenc=utf-8
 set encoding=utf-8
 set fileencodings=utf-8,sjis,euc-jp,iso-2022-jp
 set fileformats=unix,dos,mac
@@ -82,11 +81,11 @@ nnoremap s "_s
 
 " functions
 function! CreateCompileCommands()
-  if filereadable("CMakeLists.txt") && isdirectory("./build")
-    execute "lcd" . "./build"
+  if filereadable('CMakeLists.txt') && isdirectory('./build')
+    execute 'lcd' . './build'
     call system('cmake .. -DCMAKE_EXPORT_COMPILE_COMMANDS=ON')
     call system('compdb list > ../compile_commands.json')
-    execute "lcd" . "../"
+    execute 'lcd' . '../'
   endif
 endfunction
 
@@ -120,11 +119,6 @@ autocmd VimEnter *
 " rust.vim
 let g:rustfmt_autosave = 1
 
-autocmd FileType rust nmap gd <Plug>(rust-def)
-autocmd FileType rust nmap gs <Plug>(rust-def-split)
-autocmd FileType rust nmap gx <Plug>(rust-def-vertical)
-autocmd FileType rust nmap <leader>gd <Plug>(rust-doc)
-
 " winresizer
 let g:winresizer_vert_resize=2
 let g:winresizer_horiz_resize=2
@@ -156,3 +150,26 @@ let g:ale_linters = {
 
 " deoplete
 let g:deoplete#enable_at_startup = 1
+
+" LanguageClient-neovim
+set runtimepath+=~/.vim/pack/completion/start/LanguageClient-neovim
+set completefunc=LanguageClient#complete
+
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+function LC_maps()
+  if has_key(g:LanguageClient_serverCommands, &filetype)
+    nnoremap <buffer> <silent> K :call LanguageClient#textDocument_hover()<CR>
+    nnoremap <buffer> <silent> gd :call LanguageClient#textDocument_definition()<CR>
+    nnoremap <buffer> <silent> gi :call LanguageClient#textDocument_implementation()<CR>
+    nnoremap <buffer> <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+  endif
+endfunction
+autocmd FileType * call LC_maps()
+
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+    \ 'python': ['/usr/local/bin/pyls'],
+    \ 'cpp': ['clangd'],
+    \ 'c': ['clangd'],
+    \ }
+
