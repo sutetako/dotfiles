@@ -167,3 +167,6 @@ let g:ale_linters = {
 \   'c'  : ['cppcheck', 'clangtidy', 'clangcheck'],
 \   'cpp': ['cppcheck', 'clangtidy', 'clangcheck'],
 \}
+
+" deoplete
+let g:deoplete#enable_at_startup = 1

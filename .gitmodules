@@ -46,3 +46,12 @@
 [submodule ".vim/pack/syntax/start/ale"]
 	path = .vim/pack/syntax/start/ale
 	url = https://github.com/w0rp/ale.git
+[submodule ".vim/pack/utils/start/nvim-yarp.git"]
+	path = .vim/pack/utils/start/nvim-yarp.git
+	url = https://github.com/roxma/nvim-yarp.git
+[submodule ".vim/pack/utils/start/vim-hug-neovim-rpc.git"]
+	path = .vim/pack/utils/start/vim-hug-neovim-rpc.git
+	url = https://github.com/roxma/vim-hug-neovim-rpc.git
+[submodule ".vim/pack/completion/start/deoplete.nvim"]
+	path = .vim/pack/completion/start/deoplete.nvim
+	url = https://github.com/Shougo/deoplete.nvim.git
