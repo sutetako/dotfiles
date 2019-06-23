@@ -155,6 +155,7 @@ let g:deoplete#enable_at_startup = 1
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
+let g:neosnippet#enable_complete_done = 1
 
 " SuperTab like snippets behavior.
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
@@ -177,6 +178,7 @@ function LC_maps()
     nnoremap <buffer> <silent> K :call LanguageClient#textDocument_hover()<CR>
     nnoremap <buffer> <silent> gd :call LanguageClient#textDocument_definition()<CR>
     nnoremap <buffer> <silent> gi :call LanguageClient#textDocument_implementation()<CR>
+    nnoremap <buffer> <silent> gr :call LanguageClient#textDocument_references()<CR>
     nnoremap <buffer> <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
   endif
 endfunction
