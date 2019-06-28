@@ -181,10 +181,15 @@ function LC_maps()
     nnoremap <buffer> <silent> gi :call LanguageClient#textDocument_implementation()<CR>
     nnoremap <buffer> <silent> gr :call LanguageClient#textDocument_references()<CR>
     nnoremap <buffer> <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-    autocmd BufWritePost * call LanguageClient#textDocument_formatting()
+    nnoremap <buffer> <silent> F :call LanguageClient#textDocument_formatting()<CR>
   endif
 endfunction
 autocmd FileType * call LC_maps()
+augroup LanguageClient_config
+    autocmd!
+    autocmd User LanguageClientStarted setlocal signcolumn=yes
+    autocmd User LanguageClientStopped setlocal signcolumn=auto
+augroup END
 
 let g:LanguageClient_serverCommands = {
     \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],

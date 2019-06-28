@@ -58,3 +58,6 @@
 [submodule ".vim/pack/completion/start/neosnippet-snippets"]
 	path = .vim/pack/completion/start/neosnippet-snippets
 	url = https://github.com/Shougo/neosnippet-snippets.git
+[submodule ".pyenv"]
+	path = .pyenv
+	url = https://github.com/pyenv/pyenv.git
