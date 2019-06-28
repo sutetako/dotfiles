@@ -193,7 +193,7 @@ augroup END
 
 let g:LanguageClient_serverCommands = {
     \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-    \ 'python': ['/usr/local/bin/pyls'],
+    \ 'python': ['pyls'],
     \ 'cpp': ['clangd'],
     \ 'c': ['clangd'],
     \ }
