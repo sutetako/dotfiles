@@ -117,7 +117,7 @@ autocmd VimEnter *
 \  endif
 
 " rust.vim
-let g:rustfmt_autosave = 0
+let g:rustfmt_autosave = 1
 
 " winresizer
 let g:winresizer_vert_resize=2
