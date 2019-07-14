@@ -6,7 +6,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")"
 BASE=`pwd`
 
 sudo apt update
-sudo apt install -y curl wget gnupg2 build-essential
+sudo apt install -y curl wget gnupg2 build-essential git
 
 git submodule update -i --recursive
 
