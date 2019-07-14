@@ -6,7 +6,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")"
 BASE=`pwd`
 
 sudo apt update
-sudo apt install -y curl wget gnupg2 build-essential git
+sudo apt install -y curl wget gnupg2 build-essential git cmake
 
 git submodule update -i --recursive
 
@@ -69,7 +69,7 @@ ln -fsn $BASE/.fzf $HOME/
 ln -fsn $BASE/scripts/fzf.bash $HOME/.fzf.bash
 
 ## gutentags
-sudo apt install ctags
+sudo apt install -y ctags
 
 ## deoplete
 pushd $BASE/.vim/pack/completion/start/deoplete.nvim/
