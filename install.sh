@@ -71,11 +71,6 @@ ln -fsn $BASE/scripts/fzf.bash $HOME/.fzf.bash
 ## gutentags
 sudo apt install -y ctags
 
-## deoplete
-pushd $BASE/.vim/pack/completion/start/deoplete.nvim/
-make
-popd
-
 ## LanguageClient-neovim
 pushd $BASE/.vim/pack/completion/start/LanguageClient-neovim.git
 . install.sh
