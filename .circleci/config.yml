@@ -1,8 +1,21 @@
 version: 2
 jobs:
-  build:
+  build_ubuntu_18.04:
     docker:
       - image: ubuntu:18.04
+    steps:
+      - checkout
+      - run:
+          name: prepare
+          command: |
+            apt update
+            apt install sudo
+      - run:
+          name: install
+          command: . install.sh
+  build_ubuntu_16.04:
+    docker:
+      - image: ubuntu:16.04
     steps:
       - checkout
       - run:
@@ -17,4 +30,5 @@ workflows:
   version: 2
   build:
     jobs:
-      - build
+      - build_ubuntu_18.04
+      - build_ubuntu_16.04
