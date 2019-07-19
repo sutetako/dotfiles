@@ -8,6 +8,7 @@ BASE=`pwd`
 sudo apt update
 sudo apt install -y curl wget gnupg2 build-essential git cmake
 
+git submodule sync
 git submodule update -i --recursive
 
 source $BASE/configs/ENVIRONMENTS
@@ -61,7 +62,7 @@ ln -fsn $BASE/.vimrc $HOME/
 # install binaries for vim plugins
 ## fzf (and ripgrep)
 curl -LO https://github.com/BurntSushi/ripgrep/releases/download/11.0.1/ripgrep_11.0.1_amd64.deb
-dpkg -i ripgrep_11.0.1_amd64.deb
+sudo dpkg -i ripgrep_11.0.1_amd64.deb
 
 $BASE/.fzf/install --bin
 echo '[ -f ~/.fzf.bash ] && source ~/.fzf.bash' >> $HOME/.bashrc

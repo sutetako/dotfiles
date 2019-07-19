@@ -4,12 +4,12 @@ jobs:
     docker:
       - image: ubuntu:18.04
     steps:
-      - checkout
       - run:
-          name: prepare
+          name: install required tools for circle-ci
           command: |
             apt update
-            apt install sudo
+            apt install -y sudo git openssh-client wget curl ca-certificates gnupg
+      - checkout
       - run:
           name: install
           command: . install.sh
@@ -17,12 +17,12 @@ jobs:
     docker:
       - image: ubuntu:16.04
     steps:
-      - checkout
       - run:
-          name: prepare
+          name: install required tools for circle-ci
           command: |
             apt update
-            apt install sudo
+            apt install -y sudo git openssh-client wget curl ca-certificates gnupg
+      - checkout
       - run:
           name: install
           command: . install.sh
