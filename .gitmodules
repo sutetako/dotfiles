@@ -52,6 +52,7 @@
 [submodule ".vim/pack/completion/start/LanguageClient-neovim.git"]
 	path = .vim/pack/completion/start/LanguageClient-neovim.git
 	url = https://github.com/autozimu/LanguageClient-neovim.git
+	branch = next
 [submodule ".vim/pack/completion/start/neosnippet.vim"]
 	path = .vim/pack/completion/start/neosnippet.vim
 	url = https://github.com/Shougo/neosnippet.vim.git
