@@ -109,8 +109,8 @@ let g:NERDTreeChDirMode = 2
 " let g:NERDTreeQuitOnOpen = 3
 
 " nerdtree-tabs
-nmap <silent><C-n>  <plug>NERDTreeTabsToggle<CR>
-tmap <silent><C-n>  <C-w>:NERDTreeTabsToggle<CR>
+nmap <silent> <Leader>n  <plug>NERDTreeTabsToggle<CR>
+tmap <silent> <Leader>n  <C-w>:NERDTreeTabsToggle<CR>
 autocmd VimEnter *
 \  if argc() == 0 && !exists("s:std_in") |
 \    let g:nerdtree_tabs_open_on_console_startup = 1 |
