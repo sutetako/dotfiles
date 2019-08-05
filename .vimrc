@@ -148,6 +148,7 @@ let g:ale_linters = {
 \   'cpp': ['cppcheck', 'clangtidy', 'clangcheck'],
 \   'rust' : [],
 \   'python' : [],
+\   'go' : [],
 \}
 
 " deoplete
