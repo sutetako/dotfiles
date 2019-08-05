@@ -65,3 +65,6 @@
 [submodule ".goenv"]
 	path = .goenv
 	url = https://github.com/syndbg/goenv.git
+[submodule ".vim/pack/utils/start/vim-go.git"]
+	path = .vim/pack/utils/start/vim-go.git
+	url = https://github.com/fatih/vim-go.git

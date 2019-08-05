@@ -35,7 +35,9 @@ pip install --upgrade pip
 pip install -r $BASE/configs/requirements.txt
 
 # install go with goenv
+mkdir .go
 ln -fsn $BASE/.goenv $HOME/
+ln -fsn $BASE/.go $HOME/go
 . $BASE/scripts/goenv_init.sh
 cat $BASE/scripts/goenv_init.sh >> $HOME/.bashrc
 goenv install $GO_VER
@@ -84,4 +86,10 @@ sudo apt install -y ctags
 pushd $BASE/.vim/pack/completion/start/LanguageClient-neovim.git
 . install.sh
 popd
+
+## vim-go
+vim -c ":GoInstallBinaries" -c ":q!"
+
+## helptags
+sudo vim -c ":helptags ALL" -c ":q!"
 

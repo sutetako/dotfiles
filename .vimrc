@@ -172,6 +172,7 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 " LanguageClient-neovim
 set runtimepath+=~/.vim/pack/completion/start/LanguageClient-neovim
 set completefunc=LanguageClient#complete
+set formatexpr=LanguageClient#textDocument_rangeFormatting_sync()
 
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 function LC_maps()
@@ -196,5 +197,6 @@ let g:LanguageClient_serverCommands = {
     \ 'python': ['pyls'],
     \ 'cpp': ['clangd'],
     \ 'c': ['clangd'],
+    \ 'go': ['gopls'],
     \ }
 
