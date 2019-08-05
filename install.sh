@@ -34,6 +34,14 @@ pyenv global $PY_VER
 pip install --upgrade pip
 pip install -r $BASE/configs/requirements.txt
 
+# install go with goenv
+ln -fsn $BASE/.goenv $HOME/
+. $BASE/scripts/goenv_init.sh
+cat $BASE/scripts/goenv_init.sh >> $HOME/.bashrc
+goenv install $GO_VER
+goenv global $GO_VER
+goenv rehash
+
 # install vim
 sudo apt install -y ncurses-dev lua5.1 liblua5.1-dev luajit libluajit-5.1-dev python-dev
 
