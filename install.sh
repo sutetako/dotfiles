@@ -88,8 +88,8 @@ pushd $BASE/.vim/pack/completion/start/LanguageClient-neovim.git
 popd
 
 ## vim-go
-vim -c ":GoInstallBinaries" -c ":q!"
+vim -T dumb -c ":GoInstallBinaries" -c ":q!"
 
 ## helptags
-sudo vim -c ":helptags ALL" -c ":q!"
+sudo vim -T dumb -c ":helptags ALL" -c ":q!"
 
