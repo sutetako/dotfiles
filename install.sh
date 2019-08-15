@@ -37,7 +37,6 @@ pip install -r $BASE/configs/requirements.txt
 # install go with goenv
 mkdir .go
 ln -fsn $BASE/.goenv $HOME/
-ln -fsn $BASE/.go $HOME/go
 . $BASE/scripts/goenv_init.sh
 cat $BASE/scripts/goenv_init.sh >> $HOME/.bashrc
 goenv install $GO_VER
