@@ -33,7 +33,7 @@ set smartcase
 
 set expandtab
 set tabstop=4
-set shiftwidth=4
+set shiftwidth=2
 set softtabstop=0
 set autoindent
 set smartindent
@@ -76,6 +76,7 @@ nnoremap <silent> <C-Left> :tabN<CR>
 tnoremap <silent> <C-Right> <C-w>:tabn<CR>
 tnoremap <silent> <C-Left> <C-w>:tabN<CR>
 tnoremap <silent> <C-w>p <C-w>""
+nnoremap <silent> <Leader>r :sign unplace *<CR>:w<CR>
 nnoremap x "_x
 nnoremap s "_s
 
