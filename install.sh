@@ -14,14 +14,16 @@ git submodule update -i --recursive
 source $BASE/configs/ENVIRONMENTS
 
 # install clang
-cat /etc/issue | grep 18.04 > /dev/null || {
+xenial=$(cat /etc/issue | grep 18.04 > /dev/null || echo $?)
+if [ "$xenial" == "1" ]; then
   SOURCE=/etc/apt/sources.list.d/clang.list
   if [ -e ${SOURCE} ]; then sudo rm $SOURCE; fi
   sudo cp $BASE/configs/clang.list /etc/apt/sources.list.d/
   wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add -
-  sudo apt update
-}
-sudo apt install -y clang-8 clangd-8
+  sudo apt update && sudo apt install -y clang-8 clangd-8
+else
+  sudo apt install -y clang-8 clang-tools-8
+fi
 sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-8 100
 sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-8 100
 
