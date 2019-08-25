@@ -14,7 +14,7 @@ set showcmd
 set showmatch
 set ruler
 set list
-set listchars=tab:\ >,trail:-,nbsp:%,extends:>,precedes:<
+set listchars=tab:>\ ,trail:-,nbsp:%,extends:>,precedes:<
 
 set backspace=indent,eol,start
 set whichwrap=b,s,h,l,<,>,[,]
@@ -32,9 +32,9 @@ set ignorecase
 set smartcase
 
 set expandtab
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
+set tabstop=4
+set shiftwidth=4
+set softtabstop=0
 set autoindent
 set smartindent
 
@@ -107,14 +107,8 @@ let g:NERDTreeWinSize = 30
 let g:NERDTreeShowHidden = 1
 let g:NERDTreeChDirMode = 2
 " let g:NERDTreeQuitOnOpen = 3
-
-" nerdtree-tabs
-nmap <silent> <Leader>n  <plug>NERDTreeTabsToggle<CR>
-tmap <silent> <Leader>n  <C-w>:NERDTreeTabsToggle<CR>
-autocmd VimEnter *
-\  if argc() == 0 && !exists("s:std_in") |
-\    let g:nerdtree_tabs_open_on_console_startup = 1 |
-\  endif
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
 
 " rust.vim
 let g:rustfmt_autosave = 1
