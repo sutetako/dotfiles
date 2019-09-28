@@ -185,6 +185,13 @@ function LC_maps()
   endif
 endfunction
 autocmd FileType * call LC_maps()
+function LC_reset()
+  CCC
+  LanguageClientStop
+  sleep 1
+  LanguageClientStart
+endfunction
+command! LCR call LC_reset()
 augroup LanguageClient_config
     autocmd!
     autocmd User LanguageClientStarted setlocal signcolumn=yes
