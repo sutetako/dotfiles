@@ -62,6 +62,7 @@ filetype plugin indent on
 
 autocmd FileType c           setlocal sw=2 sts=2 ts=2 et
 autocmd FileType cpp         setlocal sw=2 sts=2 ts=2 et
+autocmd FileType go          setlocal sw=4 sts=4 ts=4 noet
 
 " mappings
 
