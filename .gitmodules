@@ -10,6 +10,9 @@
 [submodule ".vim/pack/browse/start/nerdtree-git-plugin"]
 	path = .vim/pack/browse/start/nerdtree-git-plugin
 	url = https://github.com/Xuyuanp/nerdtree-git-plugin.git
+[submodule ".vim/pack/browse/start/vim-nerdtree-tabs"]
+	path = .vim/pack/browse/start/vim-nerdtree-tabs
+	url = https://github.com/jistr/vim-nerdtree-tabs.git
 [submodule ".vim/pack/utils/start/rust.vim"]
 	path = .vim/pack/utils/start/rust.vim
 	url = https://github.com/rust-lang/rust.vim.git
