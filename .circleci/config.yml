@@ -1,4 +1,5 @@
 version: 2
+jobs:
   build_debian_9:
     docker:
       - image: debian:9
@@ -12,7 +13,6 @@ version: 2
       - run:
           name: install
           command: . install.sh
-jobs:
   build_ubuntu_18.04:
     docker:
       - image: ubuntu:18.04
