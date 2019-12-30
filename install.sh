@@ -20,12 +20,12 @@ if [ "$xenial" == "1" ]; then
   if [ -e ${SOURCE} ]; then sudo rm $SOURCE; fi
   sudo cp $BASE/configs/clang.list /etc/apt/sources.list.d/
   wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add -
-  sudo apt update && sudo apt install -y clang-8 clangd-8
+  sudo apt update && sudo apt install -y clang-9 clangd-9
 else
-  sudo apt install -y clang-8 clang-tools-8
+  sudo apt install -y clang-9 clang-tools-9
 fi
-sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-8 100
-sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-8 100
+sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-9 100
+sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-9 100
 
 # install python with pyenv
 ln -fsn $BASE/.pyenv $HOME/
