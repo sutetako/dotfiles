@@ -102,7 +102,7 @@ autocmd BufWritePost CMakeLists.txt CCC
 " gitgutter
 let g:gitgutter_highlight_lines = 1
 set updatetime=200
-nmap ghu <Plug>GitGutterUndoHunk
+nmap ghu <Plug>(GitGutterUndoHunk)
 
 " NERDTree
 let g:NERDTreeWinSize = 30
