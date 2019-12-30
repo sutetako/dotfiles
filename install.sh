@@ -6,7 +6,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")"
 BASE=`pwd`
 
 sudo apt update
-sudo apt install -y curl wget gnupg2 build-essential git cmake lsb-release
+sudo apt install -y curl wget gnupg2 build-essential git cmake lsb-release software-properties-common
 
 git submodule sync
 git submodule update -i --recursive
