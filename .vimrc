@@ -153,7 +153,7 @@ let g:ale_linters = {
 " deoplete
 let g:deoplete#enable_at_startup = 1
 
-" neosnnipet
+" neosnippet
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
@@ -170,40 +170,40 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
  \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 " LanguageClient-neovim
-set runtimepath+=~/.vim/pack/completion/start/LanguageClient-neovim
-set completefunc=LanguageClient#complete
-" set formatexpr=LanguageClient#textDocument_rangeFormatting_sync()
-
-nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-function LC_maps()
-  if has_key(g:LanguageClient_serverCommands, &filetype)
-    nnoremap <buffer> <silent> K :call LanguageClient#textDocument_hover()<CR>
-    nnoremap <buffer> <silent> gd :call LanguageClient#textDocument_definition()<CR>
-    nnoremap <buffer> <silent> gi :call LanguageClient#textDocument_implementation()<CR>
-    nnoremap <buffer> <silent> gr :call LanguageClient#textDocument_references()<CR>
-    nnoremap <buffer> <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-    nnoremap <buffer> <silent> F :call LanguageClient#textDocument_formatting()<CR>
-  endif
-endfunction
-autocmd FileType * call LC_maps()
-function LC_reset()
-  CCC
-  LanguageClientStop
-  sleep 1
-  LanguageClientStart
-endfunction
-command! LCR call LC_reset()
-augroup LanguageClient_config
-    autocmd!
-    autocmd User LanguageClientStarted setlocal signcolumn=yes
-    autocmd User LanguageClientStopped setlocal signcolumn=auto
-augroup END
-
-let g:LanguageClient_serverCommands = {
-    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-    \ 'python': ['pyls'],
-    \ 'cpp': ['clangd'],
-    \ 'c': ['clangd'],
-    \ 'go': ['gopls'],
-    \ }
+" set runtimepath+=~/.vim/pack/completion/start/LanguageClient-neovim
+" set completefunc=LanguageClient#complete
+" " set formatexpr=LanguageClient#textDocument_rangeFormatting_sync()
+" 
+" nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+" function LC_maps()
+"   if has_key(g:LanguageClient_serverCommands, &filetype)
+"     nnoremap <buffer> <silent> K :call LanguageClient#textDocument_hover()<CR>
+"     nnoremap <buffer> <silent> gd :call LanguageClient#textDocument_definition()<CR>
+"     nnoremap <buffer> <silent> gi :call LanguageClient#textDocument_implementation()<CR>
+"     nnoremap <buffer> <silent> gr :call LanguageClient#textDocument_references()<CR>
+"     nnoremap <buffer> <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+"     nnoremap <buffer> <silent> F :call LanguageClient#textDocument_formatting()<CR>
+"   endif
+" endfunction
+" autocmd FileType * call LC_maps()
+" function LC_reset()
+"   CCC
+"   LanguageClientStop
+"   sleep 1
+"   LanguageClientStart
+" endfunction
+" command! LCR call LC_reset()
+" augroup LanguageClient_config
+"     autocmd!
+"     autocmd User LanguageClientStarted setlocal signcolumn=yes
+"     autocmd User LanguageClientStopped setlocal signcolumn=auto
+" augroup END
+" 
+" let g:LanguageClient_serverCommands = {
+"     \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+"     \ 'python': ['pyls'],
+"     \ 'cpp': ['clangd'],
+"     \ 'c': ['clangd'],
+"     \ 'go': ['gopls'],
+"     \ }
 

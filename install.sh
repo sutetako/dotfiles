@@ -79,11 +79,6 @@ ln -fsn $BASE/scripts/fzf.bash $HOME/.fzf.bash
 ## gutentags
 sudo apt install -y ctags
 
-## LanguageClient-neovim
-pushd $BASE/.vim/pack/completion/start/LanguageClient-neovim.git
-. install.sh
-popd
-
 ## vim-go
 vim -T dumb -c "set nomore" -c ":GoInstallBinaries" -c quit
 
