@@ -40,15 +40,6 @@
 [submodule ".vim/pack/syntax/start/ale"]
 	path = .vim/pack/syntax/start/ale
 	url = https://github.com/w0rp/ale.git
-[submodule ".vim/pack/utils/start/nvim-yarp.git"]
-	path = .vim/pack/utils/start/nvim-yarp.git
-	url = https://github.com/roxma/nvim-yarp.git
-[submodule ".vim/pack/utils/start/vim-hug-neovim-rpc.git"]
-	path = .vim/pack/utils/start/vim-hug-neovim-rpc.git
-	url = https://github.com/roxma/vim-hug-neovim-rpc.git
-[submodule ".vim/pack/completion/start/deoplete.nvim"]
-	path = .vim/pack/completion/start/deoplete.nvim
-	url = https://github.com/Shougo/deoplete.nvim.git
 [submodule ".vim/pack/completion/start/neosnippet.vim"]
 	path = .vim/pack/completion/start/neosnippet.vim
 	url = https://github.com/Shougo/neosnippet.vim.git
@@ -70,12 +61,18 @@
 [submodule ".vim/pack/completion/start/vim-lsp"]
 	path = .vim/pack/completion/start/vim-lsp
 	url = https://github.com/prabirshrestha/vim-lsp
-[submodule ".vim/pack/completion/start/deoplete-vim-lsp"]
-	path = .vim/pack/completion/start/deoplete-vim-lsp
-	url = https://github.com/lighttiger2505/deoplete-vim-lsp
 [submodule ".vim/pack/utils/start/vim-lsp-settings"]
 	path = .vim/pack/utils/start/vim-lsp-settings
 	url = https://github.com/mattn/vim-lsp-settings
 [submodule ".vim/pack/completion/start/vim-lsp-neosnippet"]
 	path = .vim/pack/completion/start/vim-lsp-neosnippet
 	url = https://github.com/thomasfaingnaert/vim-lsp-neosnippet
+[submodule ".vim/pack/completion/start/vim-lsp-snippets"]
+	path = .vim/pack/completion/start/vim-lsp-snippets
+	url = https://github.com/thomasfaingnaert/vim-lsp-snippets
+[submodule ".vim/pack/completion/start/asyncomplete.vim"]
+	path = .vim/pack/completion/start/asyncomplete.vim
+	url = https://github.com/prabirshrestha/asyncomplete.vim
+[submodule ".vim/pack/completion/start/asyncomplete-lsp.vim"]
+	path = .vim/pack/completion/start/asyncomplete-lsp.vim
+	url = https://github.com/prabirshrestha/asyncomplete-lsp.vim
