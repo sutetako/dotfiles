@@ -79,6 +79,3 @@
 [submodule ".vim/pack/completion/start/vim-lsp-neosnippet"]
 	path = .vim/pack/completion/start/vim-lsp-neosnippet
 	url = https://github.com/thomasfaingnaert/vim-lsp-neosnippet
-[submodule ".vim/pack/completion/start/vim-lsp-snippets"]
-	path = .vim/pack/completion/start/vim-lsp-snippets
-	url = https://github.com/thomasfaingnaert/vim-lsp-snippets
