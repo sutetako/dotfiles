@@ -178,7 +178,13 @@ function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
     setlocal signcolumn=yes
     nmap <buffer> gd <plug>(lsp-definition)
+    nmap <buffer> gr <plug>(lsp-references)
+    nmap <buffer> gi <plug>(lsp-implementation)
+    nmap <buffer> K <plug>(lsp-hover)
     nmap <buffer> <f2> <plug>(lsp-rename)
+    nnoremap F <plug>(lsp-document-format)
+    nnoremap <silent> ]e <plug>(lsp-next-error)
+    nnoremap <silent> [e <plug>(lsp-previous-error)
     " refer to doc to add more commands
 endfunction
 
