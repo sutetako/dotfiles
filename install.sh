@@ -65,6 +65,7 @@ popd
 
 ln -fsn $BASE/.vim $HOME/
 ln -fsn $BASE/.vimrc $HOME/
+ln -fsn $BASE/.lsp_servers $HOME/.lsp_servers
 
 # install binaries for vim plugins
 ## fzf (and ripgrep)

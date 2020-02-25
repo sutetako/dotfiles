@@ -194,3 +194,7 @@ augroup lsp_install
     autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 
+" vim-lsp-settings
+let g:lsp_settings_servers_dir='~/.lsp_servers'
+
+
