@@ -76,3 +76,6 @@
 [submodule ".vim/pack/completion/start/asyncomplete-lsp.vim"]
 	path = .vim/pack/completion/start/asyncomplete-lsp.vim
 	url = https://github.com/prabirshrestha/asyncomplete-lsp.vim
+[submodule ".vim/pack/completion/start/asyncomplete-neosnippet.vim"]
+	path = .vim/pack/completion/start/asyncomplete-neosnippet.vim
+	url = https://github.com/prabirshrestha/asyncomplete-neosnippet.vim
