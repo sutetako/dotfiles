@@ -161,6 +161,9 @@ if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
 
+" asyncomplete
+" let g:asyncomplete_log_file = expand('~/.vim/tmp/asyncomplete.log')
+
 " asyncomplete-neosnippet.vim
 augroup asyncomplete_neosnippet_setting
     au!
@@ -174,7 +177,12 @@ augroup END
 " vim-lsp
 let g:lsp_signs_enabled = 1
 let g:lsp_diagnostics_echo_cursor = 1
+let g:lsp_diagnostics_echo_delay = 100
+let g:lsp_signs_priority = 11
 " let g:lsp_preview_doubletap = 0
+" let g:lsp_log_verbose = 1
+" let g:lsp_log_file = expand('~/.vim/tmp/vim-lsp.log')
+
 
 function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
