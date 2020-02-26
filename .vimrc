@@ -153,9 +153,9 @@ let g:ale_linters = {
 " neosnippet
 xmap <C-k> <Plug>(neosnippet_expand_target)
 imap <expr><C-k> neosnippet#expandable_or_jumpable() ?
- \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+ \ "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-y>" : ""
 smap <expr><C-k> neosnippet#expandable_or_jumpable() ?
- \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+ \ "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-y>" : ""
 
 if has('conceal')
   set conceallevel=2 concealcursor=niv
@@ -184,9 +184,9 @@ function! s:on_lsp_buffer_enabled() abort
     nmap <buffer> gi <plug>(lsp-implementation)
     nmap <buffer> K <plug>(lsp-hover)
     nmap <buffer> <f2> <plug>(lsp-rename)
-    nnoremap F <plug>(lsp-document-format)
-    nnoremap <silent> ]e <plug>(lsp-next-error)
-    nnoremap <silent> [e <plug>(lsp-previous-error)
+    nmap <silent> F <plug>(lsp-document-format)
+    nmap <silent> ]e <plug>(lsp-next-error)
+    nmap <silent> [e <plug>(lsp-previous-error)
     " refer to doc to add more commands
 endfunction
 
