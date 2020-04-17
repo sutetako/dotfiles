@@ -6,7 +6,6 @@ set number
 set encoding=utf-8
 set fileencodings=utf-8,sjis,euc-jp,iso-2022-jp
 set fileformats=unix,dos,mac
-set laststatus=2
 set showtabline=2
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ \[ENC=%{&fileencoding}]\ \[%{&fileformat}]\ %y\ %P
 
@@ -59,7 +58,7 @@ set diffopt=internal,filler,algorithm:histogram,indent-heuristic
 
 " highlight
 hi DiffAdd    ctermfg=None ctermbg=53
-hi DiffDelete ctermfg=None ctermbg=1
+hi DiffDelete ctermfg=None ctermbg=52
 
 " filetype
 
@@ -108,6 +107,7 @@ autocmd BufWritePost CMakeLists.txt CCC
 let g:gitgutter_highlight_lines = 1
 set updatetime=200
 nmap ghu <Plug>(GitGutterUndoHunk)
+nmap ghp <Plug>(GitGutterPreviewHunk)
 
 " NERDTree
 let g:NERDTreeWinSize = 30
