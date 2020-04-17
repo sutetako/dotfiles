@@ -8,7 +8,7 @@ jobs:
           name: install required tools for circle-ci
           command: |
             apt update
-            apt install -y sudo git openssh-client wget curl ca-certificates gnupg
+            apt install -y sudo git openssh-client wget curl ca-certificates gnupg apt-transport-https
       - checkout
       - run:
           name: install
@@ -21,7 +21,7 @@ jobs:
           name: install required tools for circle-ci
           command: |
             apt update
-            apt install -y sudo git openssh-client wget curl ca-certificates gnupg
+            apt install -y sudo git openssh-client wget curl ca-certificates gnupg apt-transport-https
       - checkout
       - run:
           name: install
@@ -34,7 +34,7 @@ jobs:
           name: install required tools for circle-ci
           command: |
             apt update
-            apt install -y sudo git openssh-client wget curl ca-certificates gnupg
+            apt install -y sudo git openssh-client wget curl ca-certificates gnupg apt-transport-https
       - checkout
       - run:
           name: install

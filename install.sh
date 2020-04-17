@@ -13,7 +13,7 @@ git submodule update -i --recursive
 
 source $BASE/configs/ENVIRONMENTS
 
-# install clang
+# install clang (latest stable)
 wget https://apt.llvm.org/llvm.sh
 chmod +x llvm.sh
 sudo ./llvm.sh $CLANG_VER
