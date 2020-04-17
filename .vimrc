@@ -56,6 +56,11 @@ set directory=~/.vim/tmp
 set completeopt=menu,noselect,longest
 set diffopt=internal,filler,algorithm:histogram,indent-heuristic
 
+
+" highlight
+hi DiffAdd    ctermfg=None ctermbg=53
+hi DiffDelete ctermfg=None ctermbg=1
+
 " filetype
 
 filetype plugin indent on
