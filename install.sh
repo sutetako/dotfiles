@@ -42,9 +42,9 @@ goenv global $GO_VER
 goenv rehash
 
 # install vim
-sudo apt install -y ncurses-dev lua5.1 liblua5.1-dev luajit libluajit-5.1-dev python-dev gnome-devel
+sudo apt install -y ncurses-dev lua5.1 liblua5.1-dev luajit libluajit-5.1-dev python-dev libxmu-dev libgtk-3-dev libxpm-dev
 
-git clone --depth 1 https://github.com/vim/vim.git
+git clone --depth 1 https://github.com/vim/vim.git -b v8.1.2424
 pushd vim
 
 LDFLAGS="-Wl,-rpath=${HOME}/.pyenv/versions/${PY_VER}/lib" \
