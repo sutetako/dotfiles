@@ -60,13 +60,6 @@ set diffopt=internal,filler,algorithm:histogram,indent-heuristic
 hi DiffAdd    ctermfg=None ctermbg=53
 hi DiffDelete ctermfg=None ctermbg=52
 
-" filetype
-
-filetype plugin indent on
-
-autocmd FileType c           setlocal sw=2 sts=2 ts=2 et
-autocmd FileType cpp         setlocal sw=2 sts=2 ts=2 et
-autocmd FileType go          setlocal sw=4 sts=4 ts=4 noet
 
 " mappings
 
@@ -95,11 +88,24 @@ function! CreateCompileCommands()
   endif
 endfunction
 
+function! AdjustWindowHeight(minheight, maxheight)
+  exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
+endfunction
+
 " auto commands
 " autocmd BufEnter * if bufname('%') == '' && &buftype == '' | let w:bufno = bufnr('%') | bf | execute 'bd' w:bufno | endif
 command! CCC call CreateCompileCommands()
 autocmd VimEnter * CCC
 autocmd BufWritePost CMakeLists.txt CCC
+
+" filetype
+
+filetype plugin indent on
+
+autocmd FileType c     setlocal sw=2 sts=2 ts=2 et
+autocmd FileType cpp   setlocal sw=2 sts=2 ts=2 et
+autocmd FileType go    setlocal sw=4 sts=4 ts=4 noet
+autocmd FileType qf    call AdjustWindowHeight(3, 10)
 
 " *** plugin settings ***
 
