@@ -58,7 +58,7 @@ LDFLAGS="-Wl,-rpath=${HOME}/.pyenv/versions/${PY_VER}/lib" \
   --enable-pythoninterp \
   --enable-python3interp \
   --with-python3-command=python${PY_VER_SHORT} \
-  --with-python3-config-dir=${HOME}/.pyenv/versions/${PY_VER}/lib/python${PY_VER_SHORT}/config-${PY_VER_SHORT}m-x86_64-linux-gnu
+  --with-python3-config-dir=${HOME}/.pyenv/versions/${PY_VER}/lib/python${PY_VER_SHORT}/config-${PY_VER_SHORT}-x86_64-linux-gnu
   vi_cv_path_python3=${HOME}/.pyenv/versions/${PY_VER}/bin/python${PY_VER_SHORT}
 
 make && sudo make install
@@ -84,6 +84,6 @@ sudo apt install -y ctags
 ## vim-go
 vim -T dumb -c "set nomore" -c ":GoInstallBinaries" -c quit
 
-## helptags
+# helptags
 sudo vim -T dumb -c "set nomore" -c ":helptags ALL" -c quit
 

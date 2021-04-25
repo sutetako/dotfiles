@@ -1,7 +1,6 @@
 " *** general settings ***
 syntax on
 
-set nocompatible
 set number
 set encoding=utf-8
 set fileencodings=utf-8,sjis,euc-jp,iso-2022-jp
@@ -89,23 +88,30 @@ function! CreateCompileCommands()
 endfunction
 
 function! AdjustWindowHeight(minheight, maxheight)
-  exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
+  exe max([min([line('$'), a:maxheight]), a:minheight]) . 'wincmd _'
 endfunction
 
 " auto commands
 " autocmd BufEnter * if bufname('%') == '' && &buftype == '' | let w:bufno = bufnr('%') | bf | execute 'bd' w:bufno | endif
 command! CCC call CreateCompileCommands()
-autocmd VimEnter * CCC
-autocmd BufWritePost CMakeLists.txt CCC
+augroup auCCC
+  autocmd!
+  autocmd VimEnter * CCC
+  autocmd BufWritePost CMakeLists.txt CCC
+augroup END
 
 " filetype
 
 filetype plugin indent on
 
-autocmd FileType c     setlocal sw=2 sts=2 ts=2 et
-autocmd FileType cpp   setlocal sw=2 sts=2 ts=2 et
-autocmd FileType go    setlocal sw=4 sts=4 ts=4 noet
-autocmd FileType qf    call AdjustWindowHeight(3, 10)
+augroup auFileType
+  autocmd!
+  autocmd FileType c      setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType cpp    setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType go     setlocal sw=4 sts=4 ts=4 noet
+  autocmd FileType python setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType qf     call AdjustWindowHeight(3, 10)
+augroup END
 
 " *** plugin settings ***
 
@@ -120,10 +126,13 @@ let g:NERDTreeWinSize = 30
 let g:NERDTreeShowHidden = 1
 let g:NERDTreeChDirMode = 2
 " let g:NERDTreeQuitOnOpen = 3
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | exe 'NERDTree' | endif
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | wincmd p | endif
-autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+augroup nerdtree
+  autocmd!
+  autocmd StdinReadPre * let s:std_in=1
+  autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | exe 'NERDTree' | endif
+  autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | wincmd p | endif
+  autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+augroup END
 nnoremap <silent><Leader>n :NERDTreeToggle<CR>
 
 " rust.vim
