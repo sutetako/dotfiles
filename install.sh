@@ -70,8 +70,8 @@ ln -fsn $BASE/.lsp_servers $HOME/.lsp_servers
 
 # install binaries for vim plugins
 ## fzf (and ripgrep)
-curl -LO https://github.com/BurntSushi/ripgrep/releases/download/11.0.1/ripgrep_11.0.1_amd64.deb
-sudo dpkg -i ripgrep_11.0.1_amd64.deb
+curl -LO https://github.com/BurntSushi/ripgrep/releases/download/12.1.1/ripgrep_12.1.1_amd64.deb
+sudo dpkg -i ripgrep_12.1.1_amd64.deb
 
 $BASE/.fzf/install --bin
 echo '[ -f ~/.fzf.bash ] && source ~/.fzf.bash' >> $HOME/.bashrc
