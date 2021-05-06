@@ -160,6 +160,9 @@ command! FZFMru call fzf#run({
 \  'options': '-m -x +s',
 \  'down':    '40%'})
 nnoremap fr :FZFMru<CR>
+command! -bang -nargs=* Rg call fzf#vim#grep(
+\  'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+\  fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:50%'), <bang>0)
 
 " ale
 let g:ale_linters = {
