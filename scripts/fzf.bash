@@ -65,7 +65,7 @@ fkill() {
 # fbr - checkout git branch
 fbr() {
   local branches branch
-  branches=$(git --no-pager branch -vv) &&
+  branches=$(git --no-pager branch -vv -a) &&
   branch=$(echo "$branches" | fzf +m) &&
   git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
 }
