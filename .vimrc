@@ -54,6 +54,8 @@ set directory=~/.vim/tmp
 set completeopt=menu,noselect,longest
 set diffopt=internal,filler,algorithm:histogram,indent-heuristic
 
+" colorshema
+colorscheme ron
 
 " highlight
 hi DiffAdd    ctermfg=None ctermbg=53
