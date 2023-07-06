@@ -1,18 +1,5 @@
 version: 2
 jobs:
-  build_debian_9:
-    docker:
-      - image: debian:9
-    steps:
-      - run:
-          name: install required tools for circle-ci
-          command: |
-            apt update
-            apt install -y sudo git openssh-client wget curl ca-certificates gnupg apt-transport-https
-      - checkout
-      - run:
-          name: install
-          command: . install.sh
   build_ubuntu_20.04:
     docker:
       - image: ubuntu:20.04
@@ -31,4 +18,3 @@ workflows:
   build:
     jobs:
       - build_ubuntu_20.04
-      - build_debian_9

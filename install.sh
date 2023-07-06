@@ -19,6 +19,7 @@ chmod +x llvm.sh
 sudo ./llvm.sh $CLANG_VER
 sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-$CLANG_VER 100
 sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-$CLANG_VER 100
+sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-$CLANG_VER 100
 
 # install python with pyenv
 ln -fsn $BASE/.pyenv $HOME/
