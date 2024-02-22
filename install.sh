@@ -80,7 +80,7 @@ ln -fsn $BASE/.fzf $HOME/
 ln -fsn $BASE/scripts/fzf.bash $HOME/.fzf.bash
 
 ## gutentags
-sudo apt install -y ctags
+sudo apt install -y universal-ctags
 
 ## vim-go
 vim -T dumb -c "set nomore" -c ":GoInstallBinaries" -c quit
