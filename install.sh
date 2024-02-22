@@ -15,8 +15,9 @@ source $BASE/configs/ENVIRONMENTS
 
 # install clang (latest stable)
 wget https://apt.llvm.org/llvm.sh
-chmod +x llvm.sh
-sudo ./llvm.sh $CLANG_VER
+cat llvm.sh | sed -e "s/^add-apt-repository/add-apt-repository -y/g" > llvm_.sh
+chmod +x llvm_.sh
+sudo ./llvm_.sh $CLANG_VER
 sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-$CLANG_VER 100
 sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-$CLANG_VER 100
 sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-$CLANG_VER 100
