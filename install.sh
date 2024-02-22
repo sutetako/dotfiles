@@ -43,9 +43,9 @@ goenv global $GO_VER
 goenv rehash
 
 # install vim
-sudo apt install -y ncurses-dev lua5.1 liblua5.1-dev luajit libluajit-5.1-dev python-dev libxmu-dev libgtk-3-dev libxpm-dev
+sudo apt install -y ncurses-dev lua5.1 liblua5.1-dev luajit libluajit-5.1-dev python3-dev libxmu-dev libgtk-3-dev libxpm-dev
 
-git clone --depth 1 https://github.com/vim/vim.git -b v8.1.2424
+git clone --depth 1 https://github.com/vim/vim.git -b v9.1.0125
 pushd vim
 
 LDFLAGS="-Wl,-rpath=${HOME}/.pyenv/versions/${PY_VER}/lib" \
@@ -56,7 +56,6 @@ LDFLAGS="-Wl,-rpath=${HOME}/.pyenv/versions/${PY_VER}/lib" \
   --enable-luainterp \
   --with-luajit \
   --enable-fail-if-missing \
-  --enable-pythoninterp \
   --enable-python3interp \
   --with-python3-command=python${PY_VER_SHORT} \
   --with-python3-config-dir=${HOME}/.pyenv/versions/${PY_VER}/lib/python${PY_VER_SHORT}/config-${PY_VER_SHORT}-x86_64-linux-gnu
