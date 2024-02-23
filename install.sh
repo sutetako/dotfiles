@@ -15,8 +15,9 @@ source $BASE/configs/ENVIRONMENTS
 
 # install clang (latest stable)
 wget https://apt.llvm.org/llvm.sh
-chmod +x llvm.sh
-sudo ./llvm.sh $CLANG_VER
+cat llvm.sh | sed -e "s/^add-apt-repository/add-apt-repository -y/g" > llvm_.sh
+chmod +x llvm_.sh
+sudo ./llvm_.sh $CLANG_VER
 sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-$CLANG_VER 100
 sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-$CLANG_VER 100
 sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-$CLANG_VER 100
@@ -43,9 +44,9 @@ goenv global $GO_VER
 goenv rehash
 
 # install vim
-sudo apt install -y ncurses-dev lua5.1 liblua5.1-dev luajit libluajit-5.1-dev python-dev libxmu-dev libgtk-3-dev libxpm-dev
+sudo apt install -y ncurses-dev lua5.1 liblua5.1-dev luajit libluajit-5.1-dev python3-dev libxmu-dev libgtk-3-dev libxpm-dev
 
-git clone --depth 1 https://github.com/vim/vim.git -b v8.1.2424
+git clone --depth 1 https://github.com/vim/vim.git -b v9.1.0125
 pushd vim
 
 LDFLAGS="-Wl,-rpath=${HOME}/.pyenv/versions/${PY_VER}/lib" \
@@ -56,7 +57,6 @@ LDFLAGS="-Wl,-rpath=${HOME}/.pyenv/versions/${PY_VER}/lib" \
   --enable-luainterp \
   --with-luajit \
   --enable-fail-if-missing \
-  --enable-pythoninterp \
   --enable-python3interp \
   --with-python3-command=python${PY_VER_SHORT} \
   --with-python3-config-dir=${HOME}/.pyenv/versions/${PY_VER}/lib/python${PY_VER_SHORT}/config-${PY_VER_SHORT}-x86_64-linux-gnu
@@ -80,7 +80,7 @@ ln -fsn $BASE/.fzf $HOME/
 ln -fsn $BASE/scripts/fzf.bash $HOME/.fzf.bash
 
 ## gutentags
-sudo apt install -y ctags
+sudo apt install -y universal-ctags
 
 ## vim-go
 vim -T dumb -c "set nomore" -c ":GoInstallBinaries" -c quit
