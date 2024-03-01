@@ -69,6 +69,10 @@ ln -fsn $BASE/.vim $HOME/
 ln -fsn $BASE/.vimrc $HOME/
 ln -fsn $BASE/.lsp_servers $HOME/.lsp_servers
 
+# apply legacy colors
+git clone --depth 1 https://github.com/vim/colorschemes.git
+cp -r colorschemes/legacy_colors/* $BASE/.vim/colors/ && rm -rf colorschemes
+
 # install binaries for vim plugins
 ## fzf (and ripgrep)
 curl -LO https://github.com/BurntSushi/ripgrep/releases/download/12.1.1/ripgrep_12.1.1_amd64.deb
