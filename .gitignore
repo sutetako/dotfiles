@@ -1,5 +1,6 @@
 .vim/tmp/*
 .vim/view/*
+.vim/colors/*
 !.gitkeep
 tags
 .netrwhist
