@@ -1,6 +1,0 @@
-compdb
-matplotlib
-numpy
-pandas
-pip-review
-scipy

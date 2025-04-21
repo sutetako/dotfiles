@@ -84,3 +84,25 @@ fshow() {
                 --bind "enter:execute:$_viewGitLogLine   | less -R" \
                 --bind "alt-y:execute:$_gitLogLineToHash | xclip"
 }
+
+fpr() {
+  local prs prs_list pr
+  prs=$(gh pr list --json number,title,author) &&
+  prs_list=$(echo $prs | jq -r '.[] | "\(.number)\t\"\(.title)\"\t\(.author.name)"') &&
+  pr=$(echo "$prs_list" | fzf +m) || return 1
+  number=$(echo $pr | awk '{print $1'})
+
+  if [[ "$1" == "co" ]]; then
+    gh co $number
+  else
+    gh pr view --web $number
+  fi
+}
+
+frepo() {
+  org=$1
+  local repos repo
+  repos=$(gh repo list -L 1000 $org) &&
+  repo=$(echo "$repos" | fzf +m) &&
+  gh repo view --web $(echo $repo | awk '{print $1}')
+}

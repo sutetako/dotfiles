@@ -37,21 +37,12 @@
 [submodule ".fzf"]
 	path = .fzf
 	url = https://github.com/junegunn/fzf.git
-[submodule ".vim/pack/syntax/start/ale"]
-	path = .vim/pack/syntax/start/ale
-	url = https://github.com/w0rp/ale.git
 [submodule ".vim/pack/completion/start/neosnippet.vim"]
 	path = .vim/pack/completion/start/neosnippet.vim
 	url = https://github.com/Shougo/neosnippet.vim.git
 [submodule ".vim/pack/completion/start/neosnippet-snippets"]
 	path = .vim/pack/completion/start/neosnippet-snippets
 	url = https://github.com/Shougo/neosnippet-snippets.git
-[submodule ".pyenv"]
-	path = .pyenv
-	url = https://github.com/pyenv/pyenv.git
-[submodule ".goenv"]
-	path = .goenv
-	url = https://github.com/syndbg/goenv.git
 [submodule ".vim/pack/utils/start/vim-go.git"]
 	path = .vim/pack/utils/start/vim-go.git
 	url = https://github.com/fatih/vim-go.git

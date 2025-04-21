@@ -146,10 +146,14 @@ let g:winresizer_horiz_resize=2
 
 " vim-airline
 let g:airline#extensions#tabline#enabled=1
-let g:airline#extensions#ale#enabled=1
+let g:airline#extensions#whitespace#mixed_indent_algo = 1
 " let g:airline_statusline_ontop=1
 let g:airline_powerline_fonts=1
 let g:airline_theme='onedark'
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+let g:airline_symbols.colnr = ' '
 
 " fzf.vim
 let $FZF_DEFAULT_OPTS="--layout=reverse"
@@ -163,15 +167,6 @@ nnoremap fr :History<CR>
 command! -bang -nargs=* Rg call fzf#vim#grep(
 \  'rg --glob "!{tags}" --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
 \  fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
-
-" ale
-let g:ale_linters = {
-\   'c'  : ['cppcheck', 'clangtidy', 'clangcheck'],
-\   'cpp': ['cppcheck', 'clangtidy', 'clangcheck'],
-\   'rust' : [],
-\   'python' : [],
-\   'go' : [],
-\}
 
 " neosnippet
 xmap <C-k> <Plug>(neosnippet_expand_target)
