@@ -152,19 +152,17 @@ let g:airline_powerline_fonts=1
 let g:airline_theme='onedark'
 
 " fzf.vim
+let $FZF_DEFAULT_OPTS="--layout=reverse"
+let g:fzf_preview_window = ['down:50%', 'ctrl-/']
+let g:fzf_layout = {'window': { 'width': 0.95, 'height': 0.9 }}
 nnoremap fb :Buffers<CR>
 nnoremap ff :Files<CR>
 nnoremap ft :Tags<CR>
 nnoremap fg :Rg<CR>
-command! FZFMru call fzf#run({
-\  'source':  v:oldfiles,
-\  'sink':    'e',
-\  'options': '-m -x +s',
-\  'down':    '40%'})
-nnoremap fr :FZFMru<CR>
+nnoremap fr :History<CR>
 command! -bang -nargs=* Rg call fzf#vim#grep(
 \  'rg --glob "!{tags}" --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-\  fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:50%'), <bang>0)
+\  fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
 
 " ale
 let g:ale_linters = {
