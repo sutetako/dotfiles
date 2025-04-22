@@ -11,6 +11,11 @@ DEBIAN_FRONTEND=noninteractive sudo -E apt install -y curl wget gnupg2 build-ess
 git submodule sync
 git submodule update -i --recursive
 
+TEMP_PROF="$BASE/.temp_profile"
+if [ -f "$TEMP_PROF" ]; then
+  rm $TEMP_PROF
+fi
+
 source $BASE/configs/lang_ver
 
 # install clang (latest stable)
@@ -24,11 +29,11 @@ sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-$CL
 # install go
 rm -rf go && curl -sL https://go.dev/dl/go${GO_VER}.linux-amd64.tar.gz | tar -C ./ -xz
 
-cat $BASE/scripts/go_init.sh >> $HOME/.bash_profile
-echo "export PATH=\$PATH:$BASE/go/bin" >> $HOME/.bash_profile
-. $HOME/.bash_profile
+cat $BASE/scripts/go_init.sh >> $TEMP_PROF
+echo "export PATH=\$PATH:$BASE/go/bin" >> $TEMP_PROF
+. $TEMP_PROF
 
-## install vim
+# install vim
 sudo apt install -y libncurses-dev lua5.4 liblua5.4-dev luajit libluajit-5.1-dev libx11-dev libxt-dev python3-dev
 rm -rf vim && git clone --depth 1 https://github.com/vim/vim.git -b v9.1.0821
 pushd vim
@@ -43,7 +48,7 @@ pushd vim
   --with-luajit \
   --with-x
 
-make -j8 && sudo make install
+make -j8 && make install
 sudo update-alternatives --install /usr/bin/vi vi $BASE/.vim/bin/vim 100
 sudo update-alternatives --install /usr/bin/vim vim $BASE/.vim/bin/vim 100
 sudo update-alternatives --install /usr/bin/editor editor $BASE/.vim/bin/vim 100
@@ -53,12 +58,15 @@ ln -fsn $BASE/.vim $HOME/
 ln -fsn $BASE/.vimrc $HOME/
 ln -fsn $BASE/.lsp_servers $HOME/.lsp_servers
 
-# apply legacy colors
+## helptags
+vim -T dumb -c "set nomore" -c ":helptags ALL" -c quit
+
+## apply legacy colors
 git clone --depth 1 https://github.com/vim/colorschemes.git
 cp -r colorschemes/legacy_colors/* $BASE/.vim/colors/ && rm -rf colorschemes
 
-# install binaries for vim plugins
-## fzf (and ripgrep)
+## install binaries for vim plugins
+### fzf (and ripgrep)
 sudo apt install ripgrep
 
 $BASE/.fzf/install --bin
@@ -66,20 +74,17 @@ echo '[ -f ~/.fzf.bash ] && source ~/.fzf.bash' >> $HOME/.bashrc
 ln -fsn $BASE/.fzf $HOME/
 ln -fsn $BASE/scripts/fzf.bash $HOME/.fzf.bash
 
-## gutentags
+### gutentags
 sudo apt install -y universal-ctags
 
-## vim-go
+### vim-go
 vim -T dumb -c "set nomore" -c ":GoInstallBinaries" -c quit
 
-# helptags
-sudo vim -T dumb -c "set nomore" -c ":helptags ALL" -c quit
-
 # uv
-echo "export UV_INSTALL_DIR=$BASE/.uv" >> $HOME/.bash_profile
-echo "export UV_PYTHON_INSTALL_DIR=$BASE/.uv/python" >> $HOME/.bash_profile
-echo "export UV_TOOL_DIR=$BASE/.uv/tool" >> $HOME/.bash_profile
-. $HOME/.bash_profile
+echo "export UV_INSTALL_DIR=$BASE/.uv" >> $TEMP_PROF
+echo "export UV_PYTHON_INSTALL_DIR=$BASE/.uv/python" >> $TEMP_PROF
+echo "export UV_TOOL_DIR=$BASE/.uv/tool" >> $TEMP_PROF
+. $TEMP_PROF
 curl -LsSf https://astral.sh/uv/install.sh | bash
 
 # gh
@@ -90,4 +95,12 @@ sudo mkdir -p -m 755 /etc/apt/keyrings \
   && echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
   && sudo apt update \
   && sudo apt install gh -y
-echo 'eval "$(gh completion -s bash)"' >> $HOME/.bash_profile
+echo 'eval "$(gh completion -s bash)"' >> $BASE/.bash_profile
+
+# build .bash_profile
+cat $BASE/.profile $TEMP_PROF > $BASE/.bash_profile
+if [ -f "$HOME/.bash_profile" ]; then
+  cp $HOME/.bash_profile $HOME/.bash_profile.bak
+  rm $HOME/.bash_profile
+fi
+ln -fsn $BASE/.bash_profile $HOME/.bash_profile
