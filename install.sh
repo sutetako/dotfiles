@@ -26,9 +26,9 @@ sudo apt install -y libssl-dev libbz2-dev libz-dev libsqlite3-dev libreadline-de
 # install go
 rm -rf go && curl -sL https://go.dev/dl/go${GO_VER}.linux-amd64.tar.gz | tar -C ./ -xz
 
-. $BASE/scripts/go_init.sh
 cat $BASE/scripts/go_init.sh >> $HOME/.bash_profile
 echo "export PATH=$PATH:$BASE/go/bin" >> $HOME/.bash_profile
+. $HOME/.bash_profile
 
 ## install vim
 sudo apt install -y libncurses-dev lua5.4 liblua5.4-dev luajit libluajit-5.1-dev libx11-dev libxt-dev python3-dev
