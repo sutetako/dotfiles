@@ -11,58 +11,42 @@ DEBIAN_FRONTEND=noninteractive sudo -E apt install -y curl wget gnupg2 build-ess
 git submodule sync
 git submodule update -i --recursive
 
-source $BASE/configs/ENVIRONMENTS
+source $BASE/configs/lang_ver
 
 # install clang (latest stable)
-wget https://apt.llvm.org/llvm.sh
-cat llvm.sh | sed -e "s/^add-apt-repository/add-apt-repository -y/g" > llvm_.sh
-chmod +x llvm_.sh
-sudo ./llvm_.sh $CLANG_VER
+wget https://apt.llvm.org/llvm.sh -O llvm.sh
+chmod +x llvm.sh
+sudo ./llvm.sh $CLANG_VER
 sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-$CLANG_VER 100
 sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-$CLANG_VER 100
 sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-$CLANG_VER 100
 
-# install python with pyenv
-ln -fsn $BASE/.pyenv $HOME/
-. $BASE/scripts/pyenv_init.sh
-cat $BASE/scripts/pyenv_init.sh >> $HOME/.bashrc
+# install go
+rm -rf go && curl -sL https://go.dev/dl/go${GO_VER}.linux-amd64.tar.gz | tar -C ./ -xz
 
-sudo apt install -y libssl-dev libbz2-dev libz-dev libsqlite3-dev libreadline-dev
-CONFIGURE_OPTS="--enable-shared" pyenv install $PY_VER
-pyenv global $PY_VER
+cat $BASE/scripts/go_init.sh >> $HOME/.bash_profile
+echo "export PATH=\$PATH:$BASE/go/bin" >> $HOME/.bash_profile
+. $HOME/.bash_profile
 
-pip install --upgrade pip
-pip install -r $BASE/configs/requirements.txt
-
-# install go with goenv
-mkdir .go
-ln -fsn $BASE/.goenv $HOME/
-. $BASE/scripts/goenv_init.sh
-cat $BASE/scripts/goenv_init.sh >> $HOME/.bashrc
-goenv install $GO_VER
-goenv global $GO_VER
-goenv rehash
-
-# install vim
-sudo apt install -y ncurses-dev lua5.1 liblua5.1-dev luajit libluajit-5.1-dev python3-dev libxmu-dev libgtk-3-dev libxpm-dev
-
-git clone --depth 1 https://github.com/vim/vim.git -b v9.1.0125
+## install vim
+sudo apt install -y libncurses-dev lua5.4 liblua5.4-dev luajit libluajit-5.1-dev libx11-dev libxt-dev python3-dev
+rm -rf vim && git clone --depth 1 https://github.com/vim/vim.git -b v9.1.0821
 pushd vim
 
-LDFLAGS="-Wl,-rpath=${HOME}/.pyenv/versions/${PY_VER}/lib" \
 ./configure \
-  --with-x \
-  --with-features=huge \
-  --enable-gui=gtk3 \
-  --enable-luainterp \
-  --with-luajit \
+  --prefix=$BASE/.vim \
   --enable-fail-if-missing \
-  --enable-python3interp \
-  --with-python3-command=python${PY_VER_SHORT} \
-  --with-python3-config-dir=${HOME}/.pyenv/versions/${PY_VER}/lib/python${PY_VER_SHORT}/config-${PY_VER_SHORT}-x86_64-linux-gnu
-  vi_cv_path_python3=${HOME}/.pyenv/versions/${PY_VER}/bin/python${PY_VER_SHORT}
+  --enable-luainterp=dynamic \
+  --enable-multibyte \
+  --enable-python3interp=dynamic \
+  --with-features=huge \
+  --with-luajit \
+  --with-x
 
-make && sudo make install
+make -j8 && sudo make install
+sudo update-alternatives --install /usr/bin/vi vi $BASE/.vim/bin/vim 100
+sudo update-alternatives --install /usr/bin/vim vim $BASE/.vim/bin/vim 100
+sudo update-alternatives --install /usr/bin/editor editor $BASE/.vim/bin/vim 100
 popd
 
 ln -fsn $BASE/.vim $HOME/
@@ -75,8 +59,7 @@ cp -r colorschemes/legacy_colors/* $BASE/.vim/colors/ && rm -rf colorschemes
 
 # install binaries for vim plugins
 ## fzf (and ripgrep)
-curl -LO https://github.com/BurntSushi/ripgrep/releases/download/12.1.1/ripgrep_12.1.1_amd64.deb
-sudo dpkg -i ripgrep_12.1.1_amd64.deb
+sudo apt install ripgrep
 
 $BASE/.fzf/install --bin
 echo '[ -f ~/.fzf.bash ] && source ~/.fzf.bash' >> $HOME/.bashrc
@@ -92,3 +75,19 @@ vim -T dumb -c "set nomore" -c ":GoInstallBinaries" -c quit
 # helptags
 sudo vim -T dumb -c "set nomore" -c ":helptags ALL" -c quit
 
+# uv
+echo "export UV_INSTALL_DIR=$BASE/.uv" >> $HOME/.bash_profile
+echo "export UV_PYTHON_INSTALL_DIR=$BASE/.uv/python" >> $HOME/.bash_profile
+echo "export UV_TOOL_DIR=$BASE/.uv/tool" >> $HOME/.bash_profile
+. $HOME/.bash_profile
+curl -LsSf https://astral.sh/uv/install.sh | bash
+
+# gh
+sudo mkdir -p -m 755 /etc/apt/keyrings \
+  && out=$(mktemp) && wget -nv -O$out https://cli.github.com/packages/githubcli-archive-keyring.gpg \
+  && cat $out | sudo tee /etc/apt/keyrings/githubcli-archive-keyring.gpg > /dev/null \
+  && sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg \
+  && echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
+  && sudo apt update \
+  && sudo apt install gh -y
+echo 'eval "$(gh completion -s bash)"' >> $HOME/.bash_profile
