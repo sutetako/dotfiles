@@ -21,8 +21,6 @@ sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-$CLANG
 sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-$CLANG_VER 100
 sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-$CLANG_VER 100
 
-sudo apt install -y libssl-dev libbz2-dev libz-dev libsqlite3-dev libreadline-dev python3 python3-pip python3-dev python-is-python3
-
 # install go
 rm -rf go && curl -sL https://go.dev/dl/go${GO_VER}.linux-amd64.tar.gz | tar -C ./ -xz
 
