@@ -11,10 +11,10 @@ DEBIAN_FRONTEND=noninteractive sudo -E apt install -y curl wget gnupg2 build-ess
 git submodule sync
 git submodule update -i --recursive
 
-if [ -f "$BASE/.bash_profile" ]; then
-  rm $BASE/.bash_profile
+TEMP_PROF="$BASE/.temp_profile"
+if [ -f "$TEMP_PROF" ]; then
+  rm $TEMP_PROF
 fi
-cp $BASE/.profile $BASE/.bash_profile
 
 source $BASE/configs/lang_ver
 
@@ -29,9 +29,9 @@ sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-$CL
 # install go
 rm -rf go && curl -sL https://go.dev/dl/go${GO_VER}.linux-amd64.tar.gz | tar -C ./ -xz
 
-cat $BASE/scripts/go_init.sh >> $BASE/.bash_profile
-echo "export PATH=\$PATH:$BASE/go/bin" >> $BASE/.bash_profile
-. $BASE/.bash_profile
+cat $BASE/scripts/go_init.sh >> $TEMP_PROF
+echo "export PATH=\$PATH:$BASE/go/bin" >> $TEMP_PROF
+. $TEMP_PROF
 
 # install vim
 sudo apt install -y libncurses-dev lua5.4 liblua5.4-dev luajit libluajit-5.1-dev libx11-dev libxt-dev python3-dev
@@ -81,10 +81,10 @@ sudo apt install -y universal-ctags
 vim -T dumb -c "set nomore" -c ":GoInstallBinaries" -c quit
 
 # uv
-echo "export UV_INSTALL_DIR=$BASE/.uv" >> $BASE/.bash_profile
-echo "export UV_PYTHON_INSTALL_DIR=$BASE/.uv/python" >> $BASE/.bash_profile
-echo "export UV_TOOL_DIR=$BASE/.uv/tool" >> $BASE/.bash_profile
-. $BASE/.bash_profile
+echo "export UV_INSTALL_DIR=$BASE/.uv" >> $TEMP_PROF
+echo "export UV_PYTHON_INSTALL_DIR=$BASE/.uv/python" >> $TEMP_PROF
+echo "export UV_TOOL_DIR=$BASE/.uv/tool" >> $TEMP_PROF
+. $TEMP_PROF
 curl -LsSf https://astral.sh/uv/install.sh | bash
 
 # gh
@@ -97,6 +97,8 @@ sudo mkdir -p -m 755 /etc/apt/keyrings \
   && sudo apt install gh -y
 echo 'eval "$(gh completion -s bash)"' >> $BASE/.bash_profile
 
+# build .bash_profile
+cat $BASE/.profile $TEMP_PROF > $BASE/.bash_profile
 if [ -f "$HOME/.bash_profile" ]; then
   cp $HOME/.bash_profile $HOME/.bash_profile.bak
   rm $HOME/.bash_profile
