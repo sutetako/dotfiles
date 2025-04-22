@@ -25,7 +25,7 @@ sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-$CL
 rm -rf go && curl -sL https://go.dev/dl/go${GO_VER}.linux-amd64.tar.gz | tar -C ./ -xz
 
 cat $BASE/scripts/go_init.sh >> $HOME/.bash_profile
-echo "export PATH=$PATH:$BASE/go/bin" >> $HOME/.bash_profile
+echo "export PATH=\$PATH:$BASE/go/bin" >> $HOME/.bash_profile
 . $HOME/.bash_profile
 
 ## install vim
@@ -75,3 +75,19 @@ vim -T dumb -c "set nomore" -c ":GoInstallBinaries" -c quit
 # helptags
 sudo vim -T dumb -c "set nomore" -c ":helptags ALL" -c quit
 
+# uv
+echo "export UV_INSTALL_DIR=$BASE/.uv" >> $HOME/.bash_profile
+echo "export UV_PYTHON_INSTALL_DIR=$BASE/.uv/python" >> $HOME/.bash_profile
+echo "export UV_TOOL_DIR=$BASE/.uv/tool" >> $HOME/.bash_profile
+. $HOME/.bash_profile
+curl -LsSf https://astral.sh/uv/install.sh | bash
+
+# gh
+sudo mkdir -p -m 755 /etc/apt/keyrings \
+  && out=$(mktemp) && wget -nv -O$out https://cli.github.com/packages/githubcli-archive-keyring.gpg \
+  && cat $out | sudo tee /etc/apt/keyrings/githubcli-archive-keyring.gpg > /dev/null \
+  && sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg \
+  && echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
+  && sudo apt update \
+  && sudo apt install gh -y
+echo 'eval "$(gh completion -s bash)"' >> $HOME/.bash_profile
