@@ -29,8 +29,9 @@ sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-$CL
 # install go
 rm -rf go && curl -sL https://go.dev/dl/go${GO_VER}.linux-amd64.tar.gz | tar -C ./ -xz
 
+. $BASE/scripts/go_init.sh
 cat $BASE/scripts/go_init.sh >> $TEMP_PROF
-echo "export PATH=\$PATH:$BASE/go/bin" >> $TEMP_PROF
+echo "export PATH=\$PATH:$GOPATH/bin:$BASE/go/bin" >> $TEMP_PROF
 . $TEMP_PROF
 
 # install vim
@@ -51,6 +52,7 @@ pushd vim
 make -j8 && make install
 sudo update-alternatives --install /usr/bin/vi vi $BASE/.vim/bin/vim 100
 sudo update-alternatives --install /usr/bin/vim vim $BASE/.vim/bin/vim 100
+sudo update-alternatives --install /usr/bin/vimdiff vimdiff $BASE/.vim/bin/vimdiff 100
 sudo update-alternatives --install /usr/bin/editor editor $BASE/.vim/bin/vim 100
 popd
 
