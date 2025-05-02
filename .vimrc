@@ -224,5 +224,17 @@ augroup END
 
 " vim-lsp-settings
 let g:lsp_settings_servers_dir='~/.lsp_servers'
-
+let g:lsp_settings = {
+\   'pylsp-all': {
+\     'workspace_config': {
+\       'pylsp': {
+\         'plugins': {
+\           'pycodestyle': {
+\             'ignore': ["E501"]
+\           }
+\         }
+\       }
+\     }
+\   }
+\ }
 
